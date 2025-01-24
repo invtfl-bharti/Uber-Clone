@@ -13,17 +13,13 @@ module.exports.registerUser = async (req, res, next) => {
 
     const { fullname, email, password } = req.body;
 
-    // Check if the user already exists
-    const isUserAlready = await userModel.findOne({ email });
-    if (isUserAlready) {
-      return res.status(400).json({ message: "User already exists" });
-    }
+    
 
     const hashedPassword = await userModel.hashPassword(password);
 
     // Create the user
     const user = await userService.createUser({
-      firstname: fullname.firstname, 
+      firstname: fullname.firstname,
       lastname: fullname.lastname,
       email,
       password: hashedPassword,
@@ -38,15 +34,40 @@ module.exports.registerUser = async (req, res, next) => {
         _id: user._id,
         fullname: {
           firstname: user.firstname,
-          lastname: user.lastname
+          lastname: user.lastname,
         },
-        email: user.email
-      }
+        email: user.email,
+      },
     });
 
     res.status(201).json({ token, user });
-    
   } catch (error) {
-    next(error); 
+    next(error);
   }
 };
+
+module.exports.loginUser = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { email, password } = req.body;
+  const user = await userModel.findOne({ email }).select("+password");
+  if (!user) {
+    return res.status(401).json({ message: "Invalid email or password" });
+  }
+
+  const isMatch = await user.comparePassword(password);
+  if (!isMatch) {
+    return res.status(401).json({ message: "Invalid email or password" });
+  }
+
+  const token = user.generateAuthToken();
+  res.status(200).json({ token, user });
+};
+
+
+module.exports.getUserProfile = async (req, res, next) => {
+  res.status(200).json(req.user);
+}
