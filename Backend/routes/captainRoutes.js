@@ -39,7 +39,7 @@ router.post('/login', [
     body('password').isLength({min:6}).withMessage('Password must be atleast 6 characters or long')
 ],
     
-    captainController.captainLogin
+    captainController.loginCaptain
 )
 
 
