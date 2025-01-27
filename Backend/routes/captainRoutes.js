@@ -33,6 +33,24 @@ router.post(
   
 );
 
+
+router.post('/login', [
+    body('email').isEmail().withMessage('Invalid Email'),
+    body('password').isLength({min:6}).withMessage('Password must be atleast 6 characters or long')
+],
+    
+    captainController.captainLogin
+)
+
+
+router.get('/profile', authMiddleware.authCaptain, captainController.getCaptainProfile);
+
+
+router.get('/logout', authMiddleware.authCaptain, captainController.logoutCaptain);
+
+
+
+
 module.exports = router;
 
 
