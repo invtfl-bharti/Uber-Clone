@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CaptainLogin from './pages/CaptainLogin';
@@ -8,6 +8,10 @@ import UserLogin from './pages/UserLogin';
 import UserSignUp from './pages/UserSignUp';
 
 function App() {
+
+  const ans = useContext(UserDataContext)
+
+  console.log(ans)
   return (
 
       <div>

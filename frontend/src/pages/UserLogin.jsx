@@ -15,7 +15,7 @@ const UserLogin = () => {
       email: email,
       password:password
     })
-    console.log(userData);
+    // console.log(userData);
     setEmail('');
     setPassword('');
   }
@@ -23,7 +23,7 @@ const UserLogin = () => {
   return (
     <div className='p-7 flex flex-col justify-between h-screen'>
           
-          <img className='h-10 w-8 ' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" srcset="" />
+          <img className=' w-16 mb-10 ' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" srcset="" />
           <div>
             <form onSubmit={(e) => {
               submitHandler(e);
@@ -42,12 +42,12 @@ const UserLogin = () => {
               }} className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' required type="password" placeholder='password' />
               <button className='bg-[#111] font-semibold text-[#fff] mb-6 px-4 py-2 mt-6 rounded w-full'>Login</button>
     
-              <p className='text-center mb-2'>Join a fleet? <Link to='/signup' className='text-blue-600'>Register as a Captain</Link></p>
+              <p className='text-center mb-2'>New here? <Link to='/signup' className='text-blue-600'>Create new Account</Link></p>
             </form>
           </div>
     
           <div>
-            <Link to='/captain-login' className='bg-orange-400 flex items-center justify-center px-4 py-2 w-full rounded font-semibold mb-5 text-white'>Sign In As User</Link>
+            <Link to='/captain-login' className='bg-green-600 flex items-center justify-center px-4 py-2 w-full rounded font-semibold mb-5 text-white'>Sign In As Captain</Link>
           </div>
         </div>
 

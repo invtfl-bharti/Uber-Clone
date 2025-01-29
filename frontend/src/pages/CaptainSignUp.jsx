@@ -1,27 +1,36 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 const CaptainSignUp = () => {
+
   const [email, setEmail] = useState('');
-      const [password, setPassword] = useState('');
-    const [captainData, setCaptainData] = useState({});
-    
-    
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const[captainData, setCaptainData] = useState({})
+
   const submitHandler = (e) => {
     e.preventDefault();
+    setEmail('')
+    setFirstName('')
+    setLastName('')
+    setPassword('')
     setCaptainData({
+      fullName: {
+        firstName: firstName,
+        lastName: lastName,
+      },
       email: email,
-      password
+      password:password
     })
-    console.log(captainData);
-    setEmail('');
-    setPassword('');
 
   }
+
+  
   return (
     
     <div className='p-7 flex flex-col justify-between h-screen'>
           
-          <img className='h-10 w-8 ' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" srcset="" />
+          <img className='w-16 mb-10 ' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" srcset="" />
           <div>
             <form onSubmit={(e) => {
               submitHandler(e);
@@ -38,15 +47,16 @@ const CaptainSignUp = () => {
               <input value={password} onChange={(e) => {
                 setPassword(e.target.value);
               }} className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' required type="password" placeholder='password' />
-              <button className='bg-[#111] font-semibold text-[#fff] mb-6 px-4 py-2 mt-6 rounded w-full'>Login</button>
+              <button className='bg-[#111] font-semibold text-[#fff] mb-6 px-4 py-2 mt-6 rounded w-full'>Create Captain Account</button>
     
-              <p className='text-center mb-2'>Join a fleet? <Link to='/signup' className='text-blue-600'>Register as a Captain</Link></p>
+              <p className='text-center mb-2'>Already have an account? <Link to='/captain-login' className='text-blue-600'>Login Here</Link></p>
             </form>
           </div>
     
           <div>
-            <Link to='/captain-' className='bg-orange-400 flex items-center justify-center px-4 py-2 w-full rounded font-semibold mb-5 text-white'>Sign In As User</Link>
-          </div>
+        <p className='text-[10px] mt-6 leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
+          Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
+      </div>
         </div>
   )
 }
