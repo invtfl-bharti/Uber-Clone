@@ -1,9 +1,39 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+const UserSignUp = () => {
 
-export default function UserSignUp() {
+  const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+    const [userData, setUserData] = useState({});
+    
+
   return (
-    <div>
-      User Sign Up
-    </div>
+    <div className='p-7 flex flex-col justify-between h-screen'>
+          
+          <img className='h-10 w-8 ' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" srcset="" />
+          <div>
+            <form onSubmit={(e) => {
+              submitHandler(e);
+            }}>
+              <h3 className='text-lg mb-2 font-medium'>What's your email?</h3>
+            
+              <input required className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' type="email" placeholder='email@example.com'/>
+            
+              <h3 className='text-lg font-medium mt-4'>Enter Password</h3>
+    
+    
+              <input className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' required type="password" placeholder='password' />
+              <button className='bg-[#111] font-semibold text-[#fff] mb-6 px-4 py-2 mt-6 rounded w-full'>Login</button>
+    
+              <p className='text-center mb-2'>Join a fleet? <Link to='/signup' className='text-blue-600'>Register as a Captain</Link></p>
+            </form>
+          </div>
+    
+          <div>
+            <Link to='/captain-login' className='bg-orange-400 flex items-center justify-center px-4 py-2 w-full rounded font-semibold mb-5 text-white'>Sign In As Captain</Link>
+          </div>
+        </div>
   )
 }
+
+export default UserSignUp
