@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectToDb = require("./db/db");
+connectToDb();
 const userRoutes = require("./routes/userRoutes");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
