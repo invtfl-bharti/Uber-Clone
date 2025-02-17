@@ -1,13 +1,13 @@
-// import { set } from 'mongoose';
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
+
 
 const UserLogin = () => {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [userData, setUserData] = useState({});
-
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [userData, setUserData] = useState({})
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -15,42 +15,48 @@ const UserLogin = () => {
       email: email,
       password:password
     })
-    // console.log(userData);
-    setEmail('');
-    setPassword('');
+
+    console.log(userData)
+     setEmail('')
+    setPassword('')
+
   }
-
   return (
-    <div className='p-7 flex flex-col justify-between h-screen'>
+    <div className='p-5 h-screen flex flex-col justify-between'>
+      <img className='w-15 h-13 ml-5' src="https://download.logo.wine/logo/Uber/Uber-Logo.wine.png" alt="" srcset="" />
+      <div>
+        <form className='p-3' onSubmit={(e) => {
+          submitHandler(e);
+        }} >
+          <h3 className='text-lg font-medium mb-2'>What's your email id</h3>
+          <input required className='text-lg  w-full border py-2 rounded bg-[#eeeeee] placeholder:text-base mb-7 px-4' type="email" placeholder='email@example.com'  value={email} onChange={(e) => {
+            setEmail(e.target.value);
+          }} />
           
-          <img className=' w-16 mb-10 ' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" srcset="" />
-          <div>
-            <form onSubmit={(e) => {
-              submitHandler(e);
-            }}>
-              <h3 className='text-lg mb-2 font-medium'>What's your email?</h3>
-            
-              <input required value={email} onChange={(e) => {
-                setEmail(e.target.value);
-              }} className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' type="email" placeholder='email@example.com'/>
-            
-              <h3 className='text-lg font-medium mt-4'>Enter Password</h3>
-    
-    
-              <input value={password} onChange={(e) => {
-                setPassword(e.target.value);
-              }} className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' required type="password" placeholder='password' />
-              <button className='bg-[#111] font-semibold text-[#fff] mb-6 px-4 py-2 mt-6 rounded w-full'>Login</button>
-    
-              <p className='text-center mb-2'>New here? <Link to='/signup' className='text-blue-600'>Create new Account</Link></p>
-            </form>
-          </div>
-    
-          <div>
-            <Link to='/captain-login' className='bg-green-600 flex items-center justify-center px-4 py-2 w-full rounded font-semibold mb-5 text-white'>Sign In As Captain</Link>
-          </div>
-        </div>
 
+        
+          <h3 className='text-lg font-medium mb-2'>Enter your password</h3>
+          <input required className='text-lg  w-full border py-2  rounded  bg-[#eeeeee] placeholder:text-base px-4 mb-7' type="password" placeholder='password' value={password} onChange={(e) => {
+            setPassword(e.target.value);
+          }} />
+          
+
+
+          <button className='w-full bg-black text-white mt-7 border rounded py-2 font-semibold placeholder:text-base flex flex-col justify-center items-center mb-2 px-4'>Login</button>
+
+        </form>
+
+        <p className='text-center'>New here? <Link to='/signup' className='text-blue-600'>Create Account</Link></p>
+        
+
+        
+      </div>
+
+
+      <div className='p-3'>
+         <Link to='/captain-login' className='bg-[#10b461] text-white  border rounded py-2  font-semibold placeholder:text-base flex flex-col justify-center items-center mb-7'>Sign in as Captain</Link>
+      </div>
+    </div>
   )
 }
 

@@ -1,88 +1,93 @@
-import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
 const UserSignUp = () => {
+  const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const[userData, setUserData] = useState('')
+  
+    const submitHandler = (e) => {
+      e.preventDefault();
+      setUserData({
+        fullName: {
+          firstname: firstName,
+          lastname:lastName
+        },
+        email: email,
+        password:password
+      })
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const[userData, setUserData] = useState({})
+      // console.log(userData);
+      setEmail('');
+      setFirstName('')
+      setLastName('')
+      setPassword('')
+      
+  
+    }
+    return (
+      <div className='p-5 h-screen flex flex-col justify-between'>
+        {/* <img className='w-15 h-13 ml-5' src="https://download.logo.wine/logo/Uber/Uber-Logo.wine.png" alt="" srcset="" /> */}
+        <div>
+          <form className='p-3' onSubmit={(e) => {
+            submitHandler(e);
+          }} >
+            <h3 className='text-base font-medium mb-2'>What's your name</h3>
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    // Store values before resetting
-    const updatedUserData = {
-      fullName: {
-        firstName: firstName,
-        lastName: lastName,
-      },
-      email: email,
-      password: password
-    };
-
-    setUserData(updatedUserData);
-
-    // Now reset input fields
-    setEmail('');
-    setFirstName('');
-    setLastName('');
-    setPassword('');
-};
-
-
-
-
-
-  return (
-    <div className='p-7 flex flex-col justify-start  h-screen'>
-          
-          <img className=' w-16 mb-10' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" srcset="" />
-          <div>
-        <form onSubmit={(e) => {
-          submitHandler(e);
-        }}>
-          <h3 className='text-lg mb-2 font-medium'>Enter your Full Name</h3>
-          <div className="flex gap-2">
+            <div className='flex gap-3 mb-5'>
+              <input required className='text-lg w-1/2 border-none py-2 rounded bg-[#eeeeee] placeholder:text-base mb-7 px-4' type="text" placeholder='first name' value={firstName} onChange={(e) => {
+                setFirstName(e.target.value)
+              }}/>
               
-            <input required className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' type="text" placeholder='First Name' value={firstName} onChange={(e) => {
-              setFirstName(e.target.value)
-            }}
-            />
-            <input required className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' type="text" placeholder='Last Name' value={lastName} onChange={(e) => {
-              setLastName(e.target.value)
-            }}
-            />
+              <input required className='text-lg w-1/2 border-none py-2 rounded bg-[#eeeeee] placeholder:text-base mb-7 px-4' type="text" placeholder='last name' value={lastName} onChange={(e) => {
+                setLastName(e.target.value)
+              }}/>
+              
+            </div>
+
+          <div className='mt-[-22px]'>
+            <h3 className='text-base font-medium mb-2'>Enter your email</h3>
+              <input required className='text-lg  w-full border-none py-2  rounded  bg-[#eeeeee] placeholder:text-base px-4 mb-10' type="email" placeholder='email' value={email} onChange={(e) => {
+                setEmail(e.target.value);
+              }} />
           </div>
+
+
+            <div className='mt-[-20px]'>
+              <h3 className='text-base font-medium mb-2'>Enter your password</h3>
+              <input required className='text-lg  w-full border-none py-2  rounded  bg-[#eeeeee] placeholder:text-base px-4 mb-7' type="password" placeholder='password' value={password} onChange={(e) => {
+                setPassword(e.target.value);
+              }} />
+            </div>
             
-          <h3 className='text-lg font-medium mt-7 mb-2'>Enter your email</h3>
-          <input className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' required type="email" placeholder='email@gmail.com' value={email} onChange={(e) => {
-            setEmail(e.target.value)
-          }}
-          />
-
-
-
-          <h3 className='text-lg font-medium mt-7 mb-2'>Enter Password</h3>
-          <input className='bg-[#eeeeee] rounded px-4 py-2 w-full text-lg placeholder:text-base' required type="password" placeholder='password'  value={password} onChange={(e) => {
-            setPassword(e.target.value)
-          }}
-          />
-
-
-
-          <button className='bg-[#111] font-semibold text-[#fff] mb-6 px-4 py-3 mt-8 rounded w-full'>Create Account</button>
-    
+  
+  
+            <button className='w-full bg-black text-white mt-2 border-none rounded py-2 font-semibold placeholder:text-base flex flex-col justify-center items-center mb-2 px-4 '>Sign Up</button>
+  
+          </form>
+  
           <p className='text-center'>Already have an account? <Link to='/login' className='text-blue-600'>Login Here</Link></p>
-        </form>
-      </div>
-    
-      <div>
-          <p className='text-[10px] leading-tight mt-10'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
-            Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
-        </div>
-    </div> 
-  )
 
+          <div>
+            <p className='text-[10px] leading-tight mt-[40%] p-5'>This site is protected by reCAPTCHA and the <span className='underline'>
+              Google Privacy 
+              Policy
+            </span> and <span className='underline'>Terms of Service apply</span>.</p>
+          </div>
+          
+  
+          
+        </div>
+  
+  
+        {/* <div className='p-3'>
+           <Link to='/login' className='bg-[#d5622d] text-white  border rounded py-2  font-semibold placeholder:text-base flex flex-col justify-center items-center mb-7'>Sign in as User</Link>
+        </div> */}
+      </div>
+    )
 }
-export default UserSignUp
+
+export default UserSignUp;
