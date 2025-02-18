@@ -9,6 +9,7 @@ module.exports.registerCaptain = async (req, res, next) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
+
   const { fullname, email, password, vehicle } = req.body;
 
   const isCaptainAlreadyExists = await captainModel.findOne({ email });
@@ -16,6 +17,7 @@ module.exports.registerCaptain = async (req, res, next) => {
   if (isCaptainAlreadyExists) {
     return res.status(400).json("Captain Already exists");
   }
+
 
   const hashedPassword = await captainModel.hashPassword(password);
 
@@ -27,8 +29,11 @@ module.exports.registerCaptain = async (req, res, next) => {
     color: vehicle.color,
     plate: vehicle.plate,
     capacity: vehicle.capacity,
-    vehicleType: vehicle.vehicleType,
+    vehicleType: vehicle.type,
+
   });
+
+
 
   const token = captain.generateAuthToken();
   res.status(201).json({ token, captain });

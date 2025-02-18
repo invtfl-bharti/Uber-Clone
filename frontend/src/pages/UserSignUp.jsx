@@ -1,18 +1,30 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { UserDataContext } from '../context/UserContext';
+import axios from 'axios';
+import { useContext } from 'react';
+
+
 
 const UserSignUp = () => {
   const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const[userData, setUserData] = useState('')
+  const [userData, setUserData] = useState('')
+
   
-    const submitHandler = (e) => {
+
+  const navigate = useNavigate()
+
+
+  const { user, setUser } = useContext(UserDataContext);
+  
+    const submitHandler = async(e) => {
       e.preventDefault();
-      setUserData({
-        fullName: {
+      const newUser = ({
+        fullname: {
           firstname: firstName,
           lastname:lastName
         },
@@ -20,7 +32,20 @@ const UserSignUp = () => {
         password:password
       })
 
-      // console.log(userData);
+
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/register`, newUser)
+
+      if (response.status === 201) {
+        const data = response.data
+
+        setUser(data.user);
+
+        navigate('/home');
+
+        localStorage.setItem('token',data.token)
+      }
+
+
       setEmail('');
       setFirstName('')
       setLastName('')
@@ -30,7 +55,7 @@ const UserSignUp = () => {
     }
     return (
       <div className='p-5 h-screen flex flex-col justify-between'>
-        {/* <img className='w-15 h-13 ml-5' src="https://download.logo.wine/logo/Uber/Uber-Logo.wine.png" alt="" srcset="" /> */}
+        <img className='w-15 h-13 ml-5' src="https://download.logo.wine/logo/Uber/Uber-Logo.wine.png" alt="" srcset="" />
         <div>
           <form className='p-3' onSubmit={(e) => {
             submitHandler(e);
@@ -65,7 +90,7 @@ const UserSignUp = () => {
             
   
   
-            <button className='w-full bg-black text-white mt-2 border-none rounded py-2 font-semibold placeholder:text-base flex flex-col justify-center items-center mb-2 px-4 '>Sign Up</button>
+            <button className='w-full bg-black text-white mt-2 border-none rounded py-2 font-semibold placeholder:text-base flex flex-col justify-center items-center mb-2 px-4 '>Create Account</button>
   
           </form>
   
