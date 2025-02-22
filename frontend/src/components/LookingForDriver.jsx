@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LookingForDriver = () => {
+const LookingForDriver = (props) => {
   return (
     <div>
       <h5
@@ -49,9 +49,6 @@ const LookingForDriver = () => {
             </p>
           </div>
         </div>
-        <button className="bg-green-600 w-full p-2 font-semibold rounded-md text-white text-xl mt-5">
-          Confirm
-        </button>
       </div>
     </div>
   );

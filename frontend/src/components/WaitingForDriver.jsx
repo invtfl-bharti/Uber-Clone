@@ -1,24 +1,23 @@
-import React from "react";
-import LookingForDriver from "./LookingForDriver";
+import React from 'react'
 
-const ConfirmRide = (props) => {
+const WaitingForDriver = (props) => {
   return (
     <div>
       <h5
         className="p-1 text-center w-[93%] absolute top-0"
         onClick={() => {
-          props.setVehiclePanel(false);
+          props.setWaitingForDriver(false);
         }}
       >
         <i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i>
       </h5>
-      <h3 className="text-2xl font-semibold mb-5">Confirm your Ride</h3>
+
 
       <div className="flex justify-between items-center flex-col gap-2">
-        <img
+        {/* <img
           className="h-20"
           src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"
-        />
+        /> */}
 
         <div className="w-full">
           <div className="flex items-center gap-4  border-b-2 border-gray-300">
@@ -50,15 +49,17 @@ const ConfirmRide = (props) => {
             </p>
           </div>
         </div>
-        <button onClick={() => {
-          props.setVehicleFound(true);
-        }}
-          className="bg-green-600 w-full p-2 font-semibold rounded-md text-white text-xl mt-5">
+        {/* <button
+          onClick={() => {
+            props.setVehicleFound(true);
+          }}
+          className="bg-green-600 w-full p-2 font-semibold rounded-md text-white text-xl mt-5"
+        >
           Confirm
-        </button>
+        </button> */}
       </div>
     </div>
   );
-};
+}
 
-export default ConfirmRide;
+export default WaitingForDriver
