@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const WaitingForDriver = (props) => {
   return (
@@ -12,12 +12,19 @@ const WaitingForDriver = (props) => {
         <i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i>
       </h5>
 
-
       <div className="flex justify-between items-center flex-col gap-2">
-        {/* <img
-          className="h-20"
-          src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"
-        /> */}
+        <div className="flex justify-between items-center gap-10">
+          <img
+            className="h-12"
+            src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"
+          />
+          <div className="text-right">
+            <h2 className="text-lg font-medium">Rajesh Sharma</h2>
+            <h4 className="text-xl font-semibold -mt-1 -mb-1">MP 04 5433</h4>
+            <p className="text-sm text-gray-600">Maruti Suzuki Alto</p>
+          </div>
+        </div>
+       
 
         <div className="w-full">
           <div className="flex items-center gap-4  border-b-2 border-gray-300">
@@ -60,6 +67,6 @@ const WaitingForDriver = (props) => {
       </div>
     </div>
   );
-}
+};
 
-export default WaitingForDriver
+export default WaitingForDriver;
