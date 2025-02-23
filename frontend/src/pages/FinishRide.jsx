@@ -1,27 +1,34 @@
 import React from "react";
-import LookingForDriver from "./LookingForDriver";
+import { Link } from "react-router-dom";
 
-const ConfirmRide = (props) => {
-
+const FinishRide = (props) => {
   return (
     <div className="h-[95%]">
       <h5
         className="p-1 text-center w-[93%] absolute top-0"
         onClick={() => {
-          props.setVehiclePanel(false);
+          props.setFinishRidePanel(false);
         }}
       >
-        <i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i>
+              <i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i>
       </h5>
-      <h3 className="text-2xl font-semibold mb-5">Confirm this Ride to Start</h3>
+      <h3 className="text-2xl font-semibold mb-5">Finish this Ride to Start</h3>
+
+      <div className="flex justify-between items-center bg-yellow-400 p-2 rounded-xl">
+        <div className="flex justify-start items-center gap-2 ">
+          <img
+            className="h-12 w-12 rounded-full object-cover"
+            src="https://images.generated.photos/-PGxquAoUIGhdbbI8OnqHXNy8VXJ16Af-8N7di3H4X4/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Nzg4OTE3LmpwZw.jpg"
+            alt=""
+            srcset=""
+          />
+          <h3 className="text-lg font-semibold">Harsh Patel</h3>
+        </div>
+        <h5 className="font-semibold">2.2KM</h5>
+      </div>
 
       <div className="flex justify-between items-center flex-col gap-2">
-        <img
-          className="h-20"
-          src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"
-        />
-
-        <div className="w-full">
+        <div className="w-full mt-5">
           <div className="flex items-center gap-4  border-b-2 border-gray-300">
             <i className="ri-map-pin-user-line"></i>
             <div>
@@ -51,17 +58,18 @@ const ConfirmRide = (props) => {
             </p>
           </div>
         </div>
-        <button onClick={() => {
-          props.setVehicleFound(true);
-          props.setConfirmRidePopUpPanel(false);
-        }}
-          
-          className="bg-green-600 w-full p-2 font-semibold rounded-md text-white text-xl mt-5">
-          Confirm
-        </button>
+
+        <div className="mt-6">
+          <Link
+            to="/captain-home"
+            className="bg-green-500 text-white px-7 py-3 text-xl font-semibold rounded-xl w-full"
+          >
+            Finish Ride
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ConfirmRide;
+export default FinishRide;

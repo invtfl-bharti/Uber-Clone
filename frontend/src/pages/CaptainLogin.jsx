@@ -40,7 +40,7 @@ const CaptainLogin = () => {
             
   
   
-            <button className='w-full bg-black text-white mt-7 border rounded py-2 font-semibold placeholder:text-base flex flex-col justify-center items-center mb-2 px-4'>Login</button>
+            <Link to='/captain-home' className='w-full bg-black text-white mt-7 border rounded py-2 font-semibold placeholder:text-base flex flex-col justify-center items-center mb-2 px-4'>Login</Link>
   
           </form>
   

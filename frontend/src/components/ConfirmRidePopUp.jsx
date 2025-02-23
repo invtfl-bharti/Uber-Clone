@@ -1,8 +1,11 @@
-import React from "react";
-import LookingForDriver from "./LookingForDriver";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const ConfirmRide = (props) => {
-
+const ConfirmRidePopUp = () => {
+  const [otp, setOtp] = useState("");
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="h-[95%]">
       <h5
@@ -13,7 +16,9 @@ const ConfirmRide = (props) => {
       >
         <i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i>
       </h5>
-      <h3 className="text-2xl font-semibold mb-5">Confirm this Ride to Start</h3>
+      <h3 className="text-2xl font-semibold mb-5">
+        Confirm this Ride to Start
+      </h3>
 
       <div className="flex justify-between items-center flex-col gap-2">
         <img
@@ -51,17 +56,42 @@ const ConfirmRide = (props) => {
             </p>
           </div>
         </div>
-        <button onClick={() => {
-          props.setVehicleFound(true);
-          props.setConfirmRidePopUpPanel(false);
-        }}
-          
-          className="bg-green-600 w-full p-2 font-semibold rounded-md text-white text-xl mt-5">
-          Confirm
-        </button>
+
+        <div className="mt-6">
+          <form
+            onSubmit={(e) => {
+              submitHandler(e);
+            }}
+          >
+            <input
+              onChange={(e) => {
+                setOtp(e.target.value);
+              }}
+              value={otp}
+              type="text"
+              placeholder="Enter OTP"
+              className="bg-[#eee] px-12 py-2 text-lg rounded-md text-center"
+            />
+            <Link
+              to="/captain-riding"
+              className="w-full mt-5 p-2 flex justify-center items-center bg-green-600 text-white rounded-md text-xl font-semibold"
+            >
+              Confirm
+            </Link>
+            <button
+              onClick={() => {
+                props.setConfirmRidePopUpPanel(false);
+                props.setRidePopUpPanel(false);
+              }}
+              className="bg-red-600 w-full p-2 font-semibold rounded-md text-white text-xl mt-5"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ConfirmRide;
+export default ConfirmRidePopUp;
